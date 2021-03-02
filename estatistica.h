@@ -41,6 +41,14 @@ int Lim_Inferior(int classe, int menor, int amp_classe);
 // Calcula o limite superior de uma classe
 int Lim_Superior(int classe, int menor, int amp_classe);
 
+// Definir_Classes :
+// Cria um vetor de classes baseado no núm. de observações
+Classe *Definir_Classes(int *tabela, int );
+
 // Intervalo_Classe :
 // Calcula e exibe os intervalos de valores de cada classe
-void Intervalo_Classe(int k, int menor, int amp_classe);
+void Intervalo_Classe(int k, int menor, int maior, int amp_classe);
+
+// Freq_Abs_Classe :
+// Calcula a freq. absoluta de cada classe
+int Freq_Abs_Classe(int *tabela, int n, int k, int menor, int amp_classe);

@@ -9,7 +9,8 @@ int main(int argc, char const *argv[])
 {
     srand(time(NULL));   
 
-    int *tabela;        // Matriz de valores inteiros representando os dados
+    int *tabela;        // Matriz de inteiros representando os dados
+    Classe *c;           // Matriz de inteiros representando as classes
     int n;              // Número de observações
     int k;              // Quantidade de classes
     int menor, maior;   // O menor e o maior valores encontrados no rol de dados
@@ -29,27 +30,23 @@ int main(int argc, char const *argv[])
     printf("\n\n");
     // Gerando e exibindo os dados aleatoriamente
     tabela = Gerar_Dados(n);
-    /*for (int i = 0; i < n; i++) {
-        tabela[i] = 10 + (rand() % 200);
-        printf(" %3d", tabela[i]);
-        if (i+1 % 30 == 0) {
-            printf("\n");
-        }
-    }*/    
 
+    // Exibindo a tabela com os dados gerados
+    Exibe_Dados(tabela, n);
+    
     // Obtendo variáveis estatísticas acessórias
     k = (int)roundf(sqrtf(n));
     menor = Menor_Valor(tabela, n);
     maior = Maior_Valor(tabela, n);
     ac = (int)roundf((maior-menor)/(1.0*k));
 
-    // Exibindo a tabela com os dados gerados
-    Exibe_Dados(tabela, n);
-
     // Exibindo as variáveis acessórias
     Exibe_Variaveis_Auxiliares(n, k, maior, menor, ac);
+
+    // Exibindo dados agrupados
     for (int i = 0; i < k; i++) {
-        Intervalo_Classe(i, menor, ac);
+        Intervalo_Classe(i, menor, maior, ac);
+        printf(" %3d", Freq_Abs_Classe(tabela, n, i, menor, ac));
     }
     
     printf("\n\n\n");

@@ -25,7 +25,7 @@ int *Gerar_Dados(int qtd_dados) {
         printf("\n\n Erro de alocacao de memoria !!\n\n");
     }    
     for (int i = 0; i < qtd_dados; i++) {
-        dados[i] = 10 + (rand() % 120);
+        dados[i] = 10 + (rand() % 300);
     } 
     return dados;   
 }
@@ -79,11 +79,15 @@ int Lim_Superior(int classe, int menor, int amp_classe) {
 }
 
 /* Função Intervalo_Classe */
-void Intervalo_Classe(int classe, int menor, int amp_classe) {
+void Intervalo_Classe(int classe, int menor, int maior, int amp_classe) {
     int inf = Lim_Inferior(classe, menor, amp_classe);
     int sup = Lim_Superior(classe, menor, amp_classe);
 
-    printf("\n %3d [--) %-3d ", inf, sup);    
+    if (sup != maior) {
+        printf("\n %3d [--) %-3d ", inf, sup);
+    } else {
+        printf("\n %3d [--] %-3d ", inf, sup);
+    }   
 }
 
 /* Função Exibe_Variáveis_Auxiliares */
@@ -97,4 +101,19 @@ void Exibe_Variaveis_Auxiliares(int num_observacoes, int num_classes, int maior,
     printf("\n  > Maior valor da tabela de dados...: %d", maior); 
     printf("\n  > Amplitude de classe (ac).........: %d", amp_classe);
     printf("\n\n"); 
+}
+
+/* Função Freq_Abs_Classe */
+int Freq_Abs_Classe(int *tabela, int n, int k, int menor, int amp_classe) {
+    int total = 0;
+    int inf, sup;
+    
+    for (int i = 0; i < n; i++) {
+        inf = Lim_Inferior(k, menor, amp_classe);
+        sup = Lim_Superior(k, menor, amp_classe);
+        if (tabela[i] >= inf && tabela[i] < sup) {
+            total++;
+        }
+    }   
+    return total;     
 }

@@ -45,11 +45,14 @@ int main(int argc, char const *argv[])
 
     // Exibindo dados agrupados
     for (int i = 0; i < k; i++) {
-        Intervalo_Classe(i, menor, maior, ac);
-        printf(" %3d", Freq_Abs_Classe(tabela, n, i, menor, maior, ac));
+        Intervalo_Classe(i, menor, maior, ac);          // Intervalo de classes 
+        printf(" %3d", Freq_Abs_Classe(tabela, n, k, i, menor, maior, ac));    // Frequência absoluta da classe
     }
 
-    printf("\n\n AC = %d\n\n", ac);
+    printf("\n\n AC = %d", ac);
+    printf("\n AT = %d\n", maior-menor);
+    printf("\n %d", (int)(maior-menor)/k);
+    
     
     printf("\n\n\n");
     return 0;

@@ -103,18 +103,24 @@ void Exibe_Variaveis_Auxiliares(int num_observacoes, int num_classes, int maior,
     printf("\n\n"); 
 }
 
-int Freq_Abs_Classe(int *tabela, int n, int k, int menor, int maior, int amp_classe) {
+int Freq_Abs_Classe(int *tabela, int n, int k, int classe, int menor, int maior, int amp_classe) {
     int total = 0;
-    int inf = Lim_Inferior(k, menor, amp_classe);
-    int sup = Lim_Superior(k, menor, amp_classe);
+    int inf = Lim_Inferior(classe, menor, amp_classe);
+    int sup = Lim_Superior(classe, menor, amp_classe);
     
     for (int i = 0; i < n; i++) {        
         if (tabela[i] >= inf && tabela[i] < sup) {
-            total++;                       
-        }            
-    }    
-    if (tabela[n-1] == maior) {
-        total++;
-    }    
+            total++;                                             
+        }    
+        if (classe+1 == k) {
+            int inf = Lim_Inferior(classe, menor, amp_classe);
+            int sup = Lim_Superior(classe, menor, amp_classe);
+            if ((int)(maior-menor) % k == 0) {
+                if (tabela[i] == maior) {
+                    total++;
+                }                    
+            }                
+        }  
+    }        
     return total; 
 }

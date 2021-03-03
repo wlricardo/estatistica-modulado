@@ -35,10 +35,10 @@ int main(int argc, char const *argv[])
     Exibe_Dados(tabela, n);
     
     // Obtendo variáveis estatísticas acessórias
-    k = (int)roundf(sqrtf(n));
+    k = roundf(sqrtf(n));
     menor = Menor_Valor(tabela, n);
     maior = Maior_Valor(tabela, n);
-    ac = (int)roundf((maior-menor)/(1.0*k));
+    ac = (int)ceil((maior-menor)/(1.0*k));
 
     // Exibindo as variáveis acessórias
     Exibe_Variaveis_Auxiliares(n, k, maior, menor, ac);
@@ -46,8 +46,10 @@ int main(int argc, char const *argv[])
     // Exibindo dados agrupados
     for (int i = 0; i < k; i++) {
         Intervalo_Classe(i, menor, maior, ac);
-        printf(" %3d", Freq_Abs_Classe(tabela, n, i, menor, ac));
+        printf(" %3d", Freq_Abs_Classe(tabela, n, i, menor, maior, ac));
     }
+
+    printf("\n\n AC = %d\n\n", ac);
     
     printf("\n\n\n");
     return 0;

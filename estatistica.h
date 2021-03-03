@@ -51,4 +51,4 @@ void Intervalo_Classe(int k, int menor, int maior, int amp_classe);
 
 // Freq_Abs_Classe :
 // Calcula a freq. absoluta de cada classe
-int Freq_Abs_Classe(int *tabela, int n, int k, int menor, int amp_classe);
+int Freq_Abs_Classe(int *tabela, int n, int k, int menor, int maior, int amp_classe);

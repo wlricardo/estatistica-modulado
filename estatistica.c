@@ -75,9 +75,9 @@ void Intervalo_Classe(int k, int menor, int maior, int amp_classe) {
     int sup = Lim_Superior(k, menor, amp_classe);
 
     if (sup == maior) {
-        printf("\n %3d [--] %-3d ", inf, sup);
+        printf("  %3d [--] %-3d ", inf, sup);
     } else {        
-        printf("\n %3d [--) %-3d ", inf, sup);
+        printf("  %3d [--) %-3d ", inf, sup);
     }   
 }
 

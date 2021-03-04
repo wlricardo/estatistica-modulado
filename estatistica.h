@@ -58,3 +58,7 @@ int Freq_Abs_Classe(int *tabela, int n, int k, int classe, int menor, int maior,
 // Freq_Acumulada :
 // Calcula a freq. acumulada de uma classe
 int Freq_Acumulada(Classe *k, int classe);
+
+// Ponto_Medio_Classe :
+// Calcula o ponto médio do intervalo de classe
+float Ponto_Medio_Classe(int classe, int menor, int amp_classe);

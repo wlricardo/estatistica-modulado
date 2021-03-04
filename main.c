@@ -48,19 +48,11 @@ int main(int argc, char const *argv[])
         c[i].F = Freq_Abs_Classe(tabela, n, k, i, menor, maior, ac);        // Frequência absoluta da classe        
         printf(" %3d", c[i].F);                                             
         c[i].Fac = Freq_Acumulada(c, i);                                    // Frequência acumulada
-        printf(" %6d", c[i].Fac);                                             
-
-        
+        printf(" %6d", c[i].Fac);                    
+        c[i].xi = Ponto_Medio_Classe(i, menor, ac);                         // Ponto médio da classe
+        printf(" %9.2f", c[i].xi);
     }
-    /*for (int i = 0; i < k; i++)
-    {
-        Intervalo_Classe(i, menor, maior, ac);                              // Intervalo de classes
-        
-        printf(" %3d", Freq_Abs_Classe(tabela, n, k, i, menor, maior, ac)); // Frequência absoluta da classe
-
-        printf(" %3d", Freq_Acumulada(tabela, n, k, i, maior, menor, ac));  // Frequência acumulada da classe
-    }*/
-
+    
     printf("\n\n\n");
     return 0;
 }

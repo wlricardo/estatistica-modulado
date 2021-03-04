@@ -118,11 +118,20 @@ int Freq_Abs_Classe(int *tabela, int n, int k, int classe, int menor, int maior,
 }
 
 /* Função Freq_Acumulada */
-int Freq_Acumulada(Classe *k, int classe) {
+int Freq_Acumulada(Classe *c, int classe) {
     int fac = 0;
     
     for (int i = 0; i <= classe; i++) {
-        fac += k[i].F;
+        fac += c[i].F;
     }
     return fac;
+}
+
+/* Função Ponto_Medio_Classe */
+float Ponto_Medio_Classe(int classe, int menor, int amp_classe) {
+    
+    int inf = Lim_Inferior(classe, menor, amp_classe);
+    int sup = Lim_Superior(classe, menor, amp_classe);
+
+    return ((sup+inf)/2.0);
 }

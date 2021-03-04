@@ -6,13 +6,19 @@
 // Essa tipo cria uma classe de uma tabela de dados agrupados
 // onde são exibidos o intervalo de classe, freq. absoluta, 
 // freq. acumulada e média da classe
-typedef struct classe Classe;
-
+typedef struct classe{
+    int F;
+    int Fac;
+    float xi;
+} Classe;
 
 
 /*
 ** FUNÇÕES AUXILIARES
 */
+
+// *Gerar_Dados :
+// Gera um vetor com os dados gerados aleatoriamente
 int *Gerar_Dados(int quantidade);
 
 // Menor_Valor :
@@ -41,14 +47,14 @@ int Lim_Inferior(int classe, int menor, int amp_classe);
 // Calcula o limite superior de uma classe
 int Lim_Superior(int classe, int menor, int amp_classe);
 
-// Definir_Classes :
-// Cria um vetor de classes baseado no núm. de observações
-Classe *Definir_Classes(int *tabela, int );
-
 // Intervalo_Classe :
 // Calcula e exibe os intervalos de valores de cada classe
 void Intervalo_Classe(int k, int menor, int maior, int amp_classe);
 
 // Freq_Abs_Classe :
-// Calcula a freq. absoluta de cada classe
+// Calcula a freq. absoluta de uma classe
 int Freq_Abs_Classe(int *tabela, int n, int k, int classe, int menor, int maior, int amp_classe);
+
+// Freq_Acumulada :
+// Calcula a freq. acumulada de uma classe
+int Freq_Acumulada(Classe *k, int classe);

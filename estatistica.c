@@ -1,16 +1,7 @@
 
-#include<stdlib.h>
-#include<stdio.h>
-
-//*****************************************************************//
-//                         TIPOS                                   //
-//*****************************************************************//
-typedef struct {
-    int F;
-    int Fac;
-    float xi;
-} Classe;
-
+#include <stdlib.h>
+#include <stdio.h>
+#include "estatistica.h"
 
 //*****************************************************************//
 //                         FUNÇÕES                                 //
@@ -103,6 +94,7 @@ void Exibe_Variaveis_Auxiliares(int num_observacoes, int num_classes, int maior,
     printf("\n\n"); 
 }
 
+/* Função Freq_Abs_Classe */
 int Freq_Abs_Classe(int *tabela, int n, int k, int classe, int menor, int maior, int amp_classe) {
     int total = 0;
     int inf = Lim_Inferior(classe, menor, amp_classe);
@@ -120,7 +112,17 @@ int Freq_Abs_Classe(int *tabela, int n, int k, int classe, int menor, int maior,
                     total++;
                 }                    
             }                
-        }  
+        }         
     }        
     return total; 
+}
+
+/* Função Freq_Acumulada */
+int Freq_Acumulada(Classe *k, int classe) {
+    int fac = 0;
+    
+    for (int i = 0; i <= classe; i++) {
+        fac += k[i].F;
+    }
+    return fac;
 }

@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "estatistica.h"
 
 //*****************************************************************//
@@ -146,30 +147,31 @@ float Media_Ponderada(Classe *c, int classe, int tam_amostra) {
     return (media/(1.0*tam_amostra));    
 }
 
-// Classe_Modal :
-// Determina a classe modal da tabela de dados
+// Classe_Modal 
 int Classe_Modal(Classe *c, int num_classes) {
     int classe_modal = 0;
     int maior_freq = c[0].F;
+    int maior_freq_ac = c[0].Fac;
+
     for (int i = 1; i < num_classes; i++) {
-        if (c[i].F > maior_freq) {
+        if (c[i].F >= maior_freq && c[i].Fac > maior_freq_ac) {
             maior_freq = c[i].F;
+            maior_freq_ac = c[i].Fac;
             classe_modal = i;
-        }        
+        }  
     }
     return classe_modal;
 }
 
-// Moda :
-// Calcula a moda de uma tabela de dados tabelados
+// Moda 
 float Moda(Classe *classe, int ac, int k, int menor) {
     float moda=0.0;    
     int c_modal;
     int li;                 // Limite inferior da classe modal    
     int fx;                 // Freq. absoluta da classe anterior à classe modal
-    int f;                  // Freq. absoluta da classe model
+    int f;                  // Freq. absoluta da classe modal
     int fy;                 // Freq. absoluta da classe posterior à classe modal
-
+    
     c_modal = Classe_Modal(classe, k);
     if (c_modal == 0) {     // Significa que a classe modal é a 1a
         fx = 0;             // Como é a 1a classe, não haverá freq. absoluta anterior a ela
@@ -184,12 +186,55 @@ float Moda(Classe *classe, int ac, int k, int menor) {
     }
     
     f = classe[c_modal].F;
-    c_modal += 1;
     li = Lim_Inferior(c_modal, menor, ac);
     
-    moda = ac*(1.0*(f - fx));     // Multiplico por 1.0 apenas para garantir que o valor seja real
+    moda = 1.0*(ac*(f - fx));     // Multiplico por 1.0 apenas para garantir que o valor seja real
     moda /= ((f-fx)+(f-fy));
     moda += li;
 
     return moda;
+}
+
+// Classe_Mediana
+int Classe_Mediana(Classe *classe, int num_amostras) {
+    int classe_mediana = 0;
+    int i = 0;
+    int p;
+
+    p = (int)roundf(num_amostras/2.0);
+    while (classe[i].Fac < p) {
+        i++;
+    }
+    return classe_mediana = i;
+}
+
+// Mediana :
+// Calcula a mediana de uma tabela de dados tabelados
+float Mediana(Classe *classe, int num_classes, int ac, int menor, int num_amostras) {
+    float mediana = 0.0;
+    int f;          // Frequência absoluta da classe mediana
+    int fant;       // Frequência acumulada da classe anterior a da mediana
+    int li;         // Limite inferior da classe mediana
+    int c_mediana;  // Indice que indica a classe mediana
+    int p;          // Determina a posição da mediana
+
+    c_mediana = Classe_Mediana(classe, num_amostras);
+    li = Lim_Inferior(c_mediana, menor, ac);
+    p = (int)roundf(num_amostras/2.0);
+
+    // Determinação da classe mediana acumulada anterior a da classe mediana
+    if (c_mediana == 0) {       // Indica que a classe mediana é a 1a
+        fant = 0;
+    } else {
+        fant = classe[c_mediana-1].Fac;
+    }
+    
+    // Determinação da freq. abssoluta da classe mediana
+    f = classe[c_mediana].F;
+
+    mediana = 1.0*(ac*(p - fant));
+    mediana /= f;
+    mediana += 1.0*li;
+
+    return mediana;
 }

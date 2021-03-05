@@ -75,3 +75,10 @@ int Classe_Modal(Classe *c, int num_classes);
 // Calcula a moda de uma tabela de dados tabelados
 float Moda(Classe *classe, int ac, int k, int menor);
 
+// Mediana :
+// Cálculo da classe mediana
+int Classe_Mediana(Classe *classe, int num_amostras);
+
+// Mediana :
+// Calcula a mediana de uma tabela de dados tabelados
+float Mediana(Classe *classe, int num_classes, int h, int menor, int num_amostras);

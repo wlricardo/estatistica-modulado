@@ -95,6 +95,7 @@ int main(int argc, char const *argv[])
 
     printf("\n\n Media ponderada...: %8.4f", Media_Ponderada(c, k, n));
     printf("\n Moda..............: %8.4f", Moda(c, ac, k, menor));
+    printf("\n Mediana...........: %8.4f", Mediana(c, k, ac, menor, n));
     
     printf("\n\n\n");
     return 0;

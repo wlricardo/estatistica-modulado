@@ -16,7 +16,7 @@ int *Gerar_Dados(int qtd_dados) {
         printf("\n\n Erro de alocacao de memoria !!\n\n");
     }    
     for (int i = 0; i < qtd_dados; i++) {
-        dados[i] = 1 + (rand() % 50);
+        dados[i] = 1 + (rand() % 300);
     } 
     return dados;   
 }
@@ -134,4 +134,62 @@ float Ponto_Medio_Classe(int classe, int menor, int amp_classe) {
     int sup = Lim_Superior(classe, menor, amp_classe);
 
     return ((sup+inf)/2.0);
+}
+
+/* Função Media_Ponderada */
+float Media_Ponderada(Classe *c, int classe, int tam_amostra) {
+    float media = 0.0;
+
+    for (int i = 0; i < classe; i++) {
+        media += (c[i].F * c[i].xi);
+    }
+    return (media/(1.0*tam_amostra));    
+}
+
+// Classe_Modal :
+// Determina a classe modal da tabela de dados
+int Classe_Modal(Classe *c, int num_classes) {
+    int classe_modal = 0;
+    int maior_freq = c[0].F;
+    for (int i = 1; i < num_classes; i++) {
+        if (c[i].F > maior_freq) {
+            maior_freq = c[i].F;
+            classe_modal = i;
+        }        
+    }
+    return classe_modal;
+}
+
+// Moda :
+// Calcula a moda de uma tabela de dados tabelados
+float Moda(Classe *classe, int ac, int k, int menor) {
+    float moda=0.0;    
+    int c_modal;
+    int li;                 // Limite inferior da classe modal    
+    int fx;                 // Freq. absoluta da classe anterior à classe modal
+    int f;                  // Freq. absoluta da classe model
+    int fy;                 // Freq. absoluta da classe posterior à classe modal
+
+    c_modal = Classe_Modal(classe, k);
+    if (c_modal == 0) {     // Significa que a classe modal é a 1a
+        fx = 0;             // Como é a 1a classe, não haverá freq. absoluta anterior a ela
+    } else {
+        fx = classe[c_modal-1].F;
+    }
+
+    if (c_modal+1 == k) {   // Significa que a classe modal é a última
+        fy = 0;             // Como é a última classe, não haverá freq. absoluta posterior a ela
+    } else {
+        fy = classe[c_modal+1].F;
+    }
+    
+    f = classe[c_modal].F;
+    c_modal += 1;
+    li = Lim_Inferior(c_modal, menor, ac);
+    
+    moda = ac*(1.0*(f - fx));     // Multiplico por 1.0 apenas para garantir que o valor seja real
+    moda /= ((f-fx)+(f-fy));
+    moda += li;
+
+    return moda;
 }

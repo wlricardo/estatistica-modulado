@@ -62,3 +62,16 @@ int Freq_Acumulada(Classe *k, int classe);
 // Ponto_Medio_Classe :
 // Calcula o ponto médio do intervalo de classe
 float Ponto_Medio_Classe(int classe, int menor, int amp_classe);
+
+// Media_Ponderada :
+// Calcula a média ponderada dos dados tabelados
+float Media_Ponderada(Classe *c, int k, int tam_amaostra);
+
+// Classe_Modal :
+// Determina a classe modal da tabela de dados
+int Classe_Modal(Classe *c, int num_classes);
+
+// Moda :
+// Calcula a moda de uma tabela de dados tabelados
+float Moda(Classe *classe, int ac, int k, int menor);
+

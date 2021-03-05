@@ -92,6 +92,9 @@ int main(int argc, char const *argv[])
         }
     }
     printf("%c", 217);              // Moldura do canto inferior direito
+
+    printf("\n\n Media ponderada...: %8.4f", Media_Ponderada(c, k, n));
+    printf("\n Moda..............: %8.4f", Moda(c, ac, k, menor));
     
     printf("\n\n\n");
     return 0;

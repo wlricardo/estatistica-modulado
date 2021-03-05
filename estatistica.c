@@ -147,7 +147,7 @@ float Media_Ponderada(Classe *c, int classe, int tam_amostra) {
     return (media/(1.0*tam_amostra));    
 }
 
-// Classe_Modal 
+/* Função Classe_Modal */
 int Classe_Modal(Classe *c, int num_classes) {
     int classe_modal = 0;
     int maior_freq = c[0].F;
@@ -163,7 +163,7 @@ int Classe_Modal(Classe *c, int num_classes) {
     return classe_modal;
 }
 
-// Moda 
+/* Função Moda */
 float Moda(Classe *classe, int ac, int k, int menor) {
     float moda=0.0;    
     int c_modal;
@@ -195,7 +195,7 @@ float Moda(Classe *classe, int ac, int k, int menor) {
     return moda;
 }
 
-// Classe_Mediana
+/* Função Classe_Mediana */
 int Classe_Mediana(Classe *classe, int num_amostras) {
     int classe_mediana = 0;
     int i = 0;
@@ -208,8 +208,7 @@ int Classe_Mediana(Classe *classe, int num_amostras) {
     return classe_mediana = i;
 }
 
-// Mediana :
-// Calcula a mediana de uma tabela de dados tabelados
+/* Função Mediana */
 float Mediana(Classe *classe, int num_classes, int ac, int menor, int num_amostras) {
     float mediana = 0.0;
     int f;          // Frequência absoluta da classe mediana
@@ -237,4 +236,27 @@ float Mediana(Classe *classe, int num_classes, int ac, int menor, int num_amostr
     mediana += 1.0*li;
 
     return mediana;
+}
+
+/* Função Variância */
+float Variancia(int *lista, int tam_amostra, float media) {
+    float variancia = 0.0;
+
+    for (int i = 0; i < tam_amostra; i++) {
+        variancia += powf((float)lista[i] - media, 2.0);
+    }
+    return (variancia/(tam_amostra-1.0));
+}
+
+/* Função Desvio_Padrao */
+float Desvio_Padrao(float variancia) {
+    return sqrtf(variancia);
+}
+
+/* Função Coef_Variacao */
+float Coef_Variacao(float desv_padrao, float media) {
+    float cv = 0.0;
+
+    cv = desv_padrao/media;
+    return (cv*100.0);    
 }

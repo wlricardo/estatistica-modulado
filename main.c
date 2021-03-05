@@ -8,13 +8,17 @@ int main(int argc, char const *argv[])
 {
     srand(time(NULL));
 
-    int *tabela;      // Matriz de inteiros representando os dados
-    Classe *c;        // Matriz de inteiros representando as classes
-    int n;            // Número de observações
-    int k;            // Quantidade de classes
-    int menor, maior; // O menor e o maior valores encontrados no rol de dados
-    int ac;           // Amplitude de classe
-    int *inf, *sup;   // Variáveis que recebem 
+    int *tabela;            // Matriz de inteiros representando os dados
+    Classe *c;              // Matriz de inteiros representando as classes
+    int n;                  // Número de observações
+    int k;                  // Quantidade de classes
+    int menor, maior;       // O menor e o maior valores encontrados no rol de dados
+    int ac;                 // Amplitude de classe
+    int *inf, *sup;         // Variáveis que recebem 
+    float media;            // Valor da média (ponderada) dos dados amostrais
+    float variancia;        // Valor da variância o dos dados amostrais
+    float desvio_padrao;    // Valor do desvio-padrão dos dados amostrais
+    float coef_variancia;   // Valor que indica o quão confiável é a média dos valores
 
     // Otendo a quantidade de dados da tabela
     printf("\n Quantidade de dados da tabela: ");
@@ -93,9 +97,13 @@ int main(int argc, char const *argv[])
     }
     printf("%c", 217);              // Moldura do canto inferior direito
 
-    printf("\n\n Media ponderada...: %8.4f", Media_Ponderada(c, k, n));
-    printf("\n Moda..............: %8.4f", Moda(c, ac, k, menor));
-    printf("\n Mediana...........: %8.4f", Mediana(c, k, ac, menor, n));
+    media = Media_Ponderada(c, k, n);
+    variancia = Variancia(tabela, n, media);
+    desvio_padrao = Desvio_Padrao(variancia);
+    coef_variancia = Coef_Variacao(desvio_padrao, media);
+    printf("\n\n Media ponderada...: %8.4f \t  Variancia............: %-8.2f", media, variancia);
+    printf("\n Moda..............: %8.4f \t  Desvio-padrao........: %-8.2f", Moda(c, ac, k, menor), desvio_padrao);
+    printf("\n Mediana...........: %8.4f \t  Coef. de variancia...: %-8.2f", Mediana(c, k, ac, menor, n), coef_variancia);
     
     printf("\n\n\n");
     return 0;

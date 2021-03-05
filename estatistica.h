@@ -82,3 +82,15 @@ int Classe_Mediana(Classe *classe, int num_amostras);
 // Mediana :
 // Calcula a mediana de uma tabela de dados tabelados
 float Mediana(Classe *classe, int num_classes, int h, int menor, int num_amostras);
+
+// Variância :
+// Cálculo da variância de dados amostrais
+float Variancia(int *lista, int tam_amostra, float media);
+
+// Desvio-padrão :
+// Calcula o devio-padrão de valores tabelados
+float Desvio_Padrao(float variancia);
+
+// Coef_Variacao :
+// Valor que indica o quão confiável é a média dos valores
+float Coef_Variacao(float desv_padrao, float media);

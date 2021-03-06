@@ -239,13 +239,19 @@ float Mediana(Classe *classe, int num_classes, int ac, int menor, int num_amostr
 }
 
 /* Função Variância */
-float Variancia(int *lista, int tam_amostra, float media) {
+float Variancia(Classe *c, int num_classes, int tam_amostra, float media, int menor, int amp_classe) {
     float variancia = 0.0;
+    int linf, lsup;
+    float xi;
 
-    for (int i = 0; i < tam_amostra; i++) {
-        variancia += powf((float)lista[i] - media, 2.0);
+    for (int i = 0; i < num_classes; i++) {
+        linf = Lim_Inferior(i, menor, amp_classe);
+        lsup = Lim_Superior(i, menor, amp_classe);
+        xi = (1.0*(linf+lsup))/2.0;
+        variancia += (powf((xi-media), 2)*c[i].F);                
     }
-    return (variancia/(tam_amostra-1.0));
+    variancia /= ((float)tam_amostra-1.0);
+    return variancia;
 }
 
 /* Função Desvio_Padrao */

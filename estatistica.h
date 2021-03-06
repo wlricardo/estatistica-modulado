@@ -85,7 +85,7 @@ float Mediana(Classe *classe, int num_classes, int h, int menor, int num_amostra
 
 // Variância :
 // Cálculo da variância de dados amostrais
-float Variancia(int *lista, int tam_amostra, float media);
+float Variancia(Classe *c, int num_classes, int tam_amostra, float media, int menor, int amp_classe);
 
 // Desvio-padrão :
 // Calcula o devio-padrão de valores tabelados

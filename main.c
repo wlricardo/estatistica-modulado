@@ -98,7 +98,7 @@ int main(int argc, char const *argv[])
     printf("%c", 217);              // Moldura do canto inferior direito
 
     media = Media_Ponderada(c, k, n);
-    variancia = Variancia(tabela, n, media);
+    variancia = Variancia(c, k, n, media, menor, ac);
     desvio_padrao = Desvio_Padrao(variancia);
     coef_variancia = Coef_Variacao(desvio_padrao, media);
     printf("\n\n Media ponderada...: %8.4f \t  Variancia............: %-8.2f", media, variancia);
